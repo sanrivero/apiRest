@@ -3,9 +3,11 @@ package com.example.api.services;
 import com.example.api.entities.Cliente;
 import com.example.api.repositories.ClienteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class ClienteServiceImpl implements IClienteService{
 
     @Autowired
