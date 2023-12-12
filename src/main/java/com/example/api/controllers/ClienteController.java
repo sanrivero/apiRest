@@ -1,5 +1,6 @@
 package com.example.api.controllers;
 
+import com.example.api.dto.response.ClienteResponseDTO;
 import com.example.api.entities.Cliente;
 import com.example.api.services.ClienteServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,21 +30,21 @@ public class ClienteController {
     }
 
     @GetMapping("/cliente/{id}")
-    public ResponseEntity<Cliente> getClienteById(@PathVariable Long id){
-        Cliente cliente1 = clienteService.getClienteById(id);
+    public ResponseEntity<ClienteResponseDTO> getClienteById(@PathVariable Long id){
+        ClienteResponseDTO cliente1 = clienteService.getClienteById(id);
         return ResponseEntity.ok(cliente1);
     }
 
-    @PutMapping("/cliente/{id}")
-    public ResponseEntity<Cliente> updateCliente(@PathVariable Long id, @RequestBody Cliente cliente){
-        Cliente cliente1 = clienteService.getClienteById(id);
-        cliente1.setNombre(cliente.getNombre());
-        cliente1.setApellido(cliente.getApellido());
-        cliente1.setEmail(cliente.getEmail());
+    //@PutMapping("/cliente/{id}")
+    //public ResponseEntity<Cliente> updateCliente(@PathVariable Long id, @RequestBody Cliente cliente){
+      //  ClienteResponseDTO cliente1 = clienteService.getClienteById(id);
+        //cliente1.setNombre(cliente.getNombre());
+        //cliente1.setApellido(cliente.getApellido());
+        //cliente1.setEmail(cliente.getEmail());
 
-        Cliente clienteUpd = clienteService.saveCliente(cliente1);
-        return new ResponseEntity<>(clienteUpd,HttpStatus.CREATED);
-    }
+        //Cliente clienteUpd = clienteService.saveCliente(cliente1);
+    //    return new ResponseEntity<>(clienteUpd,HttpStatus.CREATED);
+    //}
 
     @DeleteMapping("/cliente/{id}")
     public ResponseEntity<HashMap<String, Boolean>> deleteCliente(@PathVariable Long id){

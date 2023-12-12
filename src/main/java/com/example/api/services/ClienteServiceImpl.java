@@ -1,5 +1,7 @@
 package com.example.api.services;
 
+import com.example.api.dto.mapper.ClienteMapper;
+import com.example.api.dto.response.ClienteResponseDTO;
 import com.example.api.entities.Cliente;
 import com.example.api.repositories.ClienteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +15,8 @@ public class ClienteServiceImpl implements IClienteService{
     @Autowired
     ClienteRepository clienteRepository;
 
+    ClienteMapper clienteMapper;
+
     @Override
     public List<Cliente> listClientes() {
         return clienteRepository.findAll();
@@ -24,8 +28,9 @@ public class ClienteServiceImpl implements IClienteService{
     }
 
     @Override
-    public Cliente getClienteById(Long id) {
-        return clienteRepository.findById(id).orElse(null);
+    public ClienteResponseDTO getClienteById(Long id) {
+        Cliente cliente = clienteRepository.findById(id).orElse(null);
+        return clienteMapper.mapper.clienteToResp(cliente);
     }
 
     @Override
